@@ -1,0 +1,120 @@
+{
+  "fix_prompts": {
+    "syntax_error": {
+      "printf": {
+        "description": "Convert C-style printf to Promela printf format. Remove format specifiers and use string concatenation.",
+        "examples": [
+          {
+            "original": "printf(\"Value: %d\\n\", x);",
+            "fixed": "printf(\"Value: \", x);",
+            "explanation": "Remove format specifier and use direct value"
+          },
+          {
+            "original": "printf(\"Sum: %d + %d = %d\\n\", a, b, sum);",
+            "fixed": "printf(\"Sum: \", a, \" + \", b, \" = \", sum);",
+            "explanation": "Split complex printf into multiple parts"
+          }
+        ]
+      },
+      "function": {
+        "description": "Convert C function to Promela inline function. Replace return statements with output parameters.",
+        "examples": [
+          {
+            "original": "int calculate(int x) { return x * 2; }",
+            "fixed": "inline calculate(x, result) { result = x * 2; }",
+            "explanation": "Convert return value to output parameter"
+          }
+        ]
+      },
+      "loop": {
+        "description": "Convert C-style loops to Promela do...od format with proper guards.",
+        "examples": [
+          {
+            "original": "while (x < 10) { x++; }",
+            "fixed": "do\n:: x < 10 -> x++\n:: else -> break\nod",
+            "explanation": "Convert while loop to do...od with guard"
+          },
+          {
+            "original": "for (i = 0; i < 5; i++) { arr[i] = 0; }",
+            "fixed": "i = 0;\ndo\n:: i < 5 -> arr[i] = 0; i++\n:: else -> break\nod",
+            "explanation": "Convert for loop to do...od with initialization"
+          }
+        ]
+      },
+      "conditional": {
+        "description": "Convert if statements to Promela if...fi format with proper guards.",
+        "examples": [
+          {
+            "original": "if (x > 0) { y = 1; } else { y = 0; }",
+            "fixed": "if\n:: x > 0 -> y = 1\n:: else -> y = 0\nfi",
+            "explanation": "Convert if-else to if...fi with guards"
+          }
+        ]
+      },
+      "array": {
+        "description": "Convert array declarations to Promela format. Use byte arrays with explicit size.",
+        "examples": [
+          {
+            "original": "int arr[10];",
+            "fixed": "byte arr[10];",
+            "explanation": "Convert int array to byte array"
+          }
+        ]
+      },
+      "pointer": {
+        "description": "Replace pointers with array indices. Create global arrays for memory simulation.",
+        "examples": [
+          {
+            "original": "int *ptr = malloc(sizeof(int));",
+            "fixed": "byte memory[MAX_SIZE];\nbit valid[MAX_SIZE];\nbyte ptr_idx;\n/* Find free index */\ndo\n:: valid[ptr_idx] == 0 -> valid[ptr_idx] = 1; break\n:: ptr_idx < MAX_SIZE-1 -> ptr_idx++\n:: else -> assert(false) /* Out of memory */\nod",
+            "explanation": "Simulate malloc with arrays"
+          }
+        ]
+      }
+    },
+    "verification_error": {
+      "deadlock": {
+        "description": "Add timeout conditions or else guards to prevent blocking states.",
+        "examples": [
+          {
+            "original": "do\n:: chan_full -> recv()\nod",
+            "fixed": "do\n:: chan_full -> recv()\n:: timeout -> break\nod",
+            "explanation": "Add timeout to prevent deadlock"
+          }
+        ]
+      },
+      "assertion": {
+        "description": "Check assertion conditions and add guards to prevent violations.",
+        "examples": [
+          {
+            "original": "x = arr[i]; assert(x >= 0);",
+            "fixed": "if\n:: i >= 0 && i < len(arr) -> x = arr[i]; assert(x >= 0)\n:: else -> assert(false)\nfi",
+            "explanation": "Add bounds checking before assertion"
+          }
+        ]
+      }
+    },
+    "memory_error": {
+      "null_pointer": {
+        "description": "Add null checks before array access.",
+        "examples": [
+          {
+            "original": "value = memory[ptr_idx];",
+            "fixed": "if\n:: valid[ptr_idx] == 1 -> value = memory[ptr_idx]\n:: else -> assert(false) /* Null pointer */\nfi",
+            "explanation": "Add null check using valid array"
+          }
+        ]
+      },
+      "array_bounds": {
+        "description": "Add bounds checking for array indices.",
+        "examples": [
+          {
+            "original": "arr[i] = value;",
+            "fixed": "if\n:: i >= 0 && i < len(arr) -> arr[i] = value\n:: else -> assert(false) /* Array bounds */\nfi",
+            "explanation": "Add bounds check before array access"
+          }
+        ]
+      }
+    }
+  }
+}

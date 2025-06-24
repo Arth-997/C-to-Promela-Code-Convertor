@@ -1,0 +1,28 @@
+{
+  "test_cases": [
+    {
+      "id": 1,
+      "name": "Basic Syntax Error",
+      "description": "Test for basic Promela syntax errors",
+      "input_code": "if (x > 0) { y = 1; }",
+      "expected_output": "if\n:: x > 0 -> y = 1\nfi",
+      "created_at": "2025-05-07T22:06:29.595525"
+    },
+    {
+      "id": 2,
+      "name": "Variable Declaration",
+      "description": "Test for variable declaration errors",
+      "input_code": "x = 1;",
+      "expected_output": "byte x;\nx = 1;",
+      "created_at": "2025-05-07T22:06:29.595714"
+    },
+    {
+      "id": 3,
+      "name": "Loop Syntax",
+      "description": "Test for loop syntax errors",
+      "input_code": "while (x < 10) { x++; }",
+      "expected_output": "do\n:: x < 10 -> x++\n:: else -> break\nod",
+      "created_at": "2025-05-07T22:06:29.595929"
+    }
+  ]
+}

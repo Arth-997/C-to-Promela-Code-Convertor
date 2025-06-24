@@ -1,0 +1,927 @@
+/* Enhanced Black Theme for CIL to Promela Converter */
+
+/* Main container styling */
+.main .block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: #000000;
+    color: #e6e6e6;
+}
+
+/* Change base text color */
+body {
+    color: #e6e6e6;
+    background-color: #000000;
+    font-weight: 500 !important;  /* Medium weight for better readability */
+}
+
+/* Make all text slightly bolder by default */
+p, span, div {
+    font-weight: 500 !important;  /* Medium weight for better readability */
+}
+
+/* Make headings extra bold */
+h1, h2, h3, h4, h5, h6, .header h1, .header h3 {
+    font-weight: 700 !important;  /* Bold headings */
+}
+
+/* Download options */
+.download-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.download-button {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 6px;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+    color: white !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.05) !important;
+}
+
+.download-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    text-decoration: none;
+}
+
+.download-button.c-code {
+    background-color: #4285f4;
+    background-image: linear-gradient(135deg, #4285f4, #2b68c5);
+}
+
+.download-button.cil-code {
+    background-color: #34a853;
+    background-image: linear-gradient(135deg, #34a853, #2a8744);
+}
+
+.download-button.promela-code {
+    background-color: #ea4335;
+    background-image: linear-gradient(135deg, #ea4335, #c93225);
+}
+
+/* Steps indicator styling */
+.steps-container {
+    display: flex;
+    margin: 25px 0;
+    position: relative;
+    background-color: #0a0a0a;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border: 2px solid #333;
+}
+
+.step {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+}
+
+.step-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #121212;
+    margin: 0 auto 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    color: #a7a7b8;
+}
+
+.step.active .step-circle {
+    background-color: #4361ee;
+    color: white;
+    box-shadow: 0 0 15px rgba(67, 97, 238, 0.5);
+    transform: scale(1.1);
+}
+
+.step.completed .step-circle {
+    background-color: #48bf91;
+    color: white;
+    box-shadow: 0 0 12px rgba(72, 191, 145, 0.4);
+}
+
+.step-line {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    height: 3px !important;
+    background-color: #333 !important;
+    z-index: 1;
+}
+
+.step-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #a7a7b8;
+    margin-top: 5px;
+    transition: all 0.3s ease;
+}
+
+.step.active .step-label {
+    color: #4361ee;
+    font-weight: 600;
+}
+
+.step.completed .step-label {
+    color: #48bf91;
+}
+
+/* Header styling */
+.header {
+    background-color: #0a0a0a;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    border-bottom: 4px solid #4361ee;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.header h1 {
+    color: #e6e6e6;
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.header h3 {
+    color: #8d99ae;
+    font-weight: 400;
+    font-size: 1.4rem;
+}
+
+/* Regular heading styling */
+h1 {
+    color: #e6e6e6;
+    font-weight: 700;
+}
+
+h2, h3 {
+    color: #8d99ae;
+    font-weight: 600;
+}
+
+/* Log message styling */
+.log-message {
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.log-info {
+    background-color: #11192a;
+    border-left: 4px solid #4285f4;
+}
+
+.log-error {
+    background-color: #211116;
+    border-left: 4px solid #ea4335;
+}
+
+.log-warning {
+    background-color: #211e11;
+    border-left: 4px solid #fbbc05;
+}
+
+.log-success {
+    background-color: #121b16;
+    border-left: 4px solid #34a853;
+}
+
+/* Status indicator styling */
+.status-indicator {
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    margin: 12px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.status-running {
+    background-color: #002171 !important;  /* Dark blue */
+    color: white !important;
+    font-weight: 700 !important;
+}
+
+.status-success {
+    background-color: #004D40 !important;  /* Dark green */
+    color: white !important;
+    font-weight: 700 !important;
+}
+
+.status-error {
+    background-color: #3B0000 !important;  /* Dark red */
+    color: white !important;
+    font-weight: 700 !important;
+}
+
+.status-active {
+    background-color: #3E2723 !important;  /* Dark brown/amber */
+    color: white !important;
+    font-weight: 700 !important;
+}
+
+/* Code blocks styling */
+pre {
+    background-color: #121212 !important;
+    border-radius: 8px;
+    padding: 18px;
+    overflow: auto;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 14px;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.3);
+    border: 2px solid #333 !important;
+    font-weight: 600 !important;
+    color: #E0E0E0 !important;
+}
+
+/* Diff view styling */
+.diff-view {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.diff-added {
+    background-color: #121b16;
+    border-left: 3px solid #48bf91;
+}
+
+.diff-removed {
+    background-color: #211116;
+    border-left: 3px solid #ea4335;
+}
+
+/* Button styling */
+.stButton > button {
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-weight: 700 !important;
+    background-image: linear-gradient(135deg, #4361ee, #3a56d4);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.stButton > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.stButton > button:active {
+    transform: translateY(0);
+}
+
+.stButton > button[kind="primary"] {
+    background-image: linear-gradient(135deg, #4361ee, #3a56d4);
+}
+
+.stButton > button[kind="secondary"] {
+    background-image: linear-gradient(135deg, #48bf91, #3ca67a);
+}
+
+/* File uploader styling */
+.stFileUploader > div {
+    padding: 25px;
+    border: 2px dashed #4361ee !important;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #0a0a0a;
+    transition: all 0.3s ease;
+}
+
+.stFileUploader > div:hover {
+    border-color: #48bf91;
+    box-shadow: 0 0 15px rgba(67, 97, 238, 0.3);
+}
+
+/* Sidebar styling */
+.sidebar .sidebar-content {
+    background-color: #0a0a0a;
+    border-right: 2px solid #333 !important;
+}
+
+/* Sidebar button styling - dark blue with bold text */
+
+/* Target all buttons within the sidebar */
+.sidebar .stButton > button {
+    background-color: #1a237e !important;  /* Dark blue background */
+    background-image: linear-gradient(135deg, #1a237e, #283593) !important;  /* Subtle gradient */
+    color: white !important;  /* White text */
+    font-weight: 700 !important;  /* Bold text */
+    border: 1px solid #3949ab !important;  /* Slightly lighter border */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;  /* Subtle shadow */
+    transition: all 0.3s ease !important;
+}
+
+/* Make sidebar text bold */
+.sidebar .block-container div {
+    font-weight: 600 !important;  /* Semi-bold for sidebar */
+}
+
+/* Hover state */
+.sidebar .stButton > button:hover {
+    background-color: #283593 !important;  /* Slightly lighter blue on hover */
+    background-image: linear-gradient(135deg, #283593, #3949ab) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4) !important;
+}
+
+/* Active state (when pressed) */
+.sidebar .stButton > button:active {
+    background-color: #1a237e !important;
+    background-image: none !important;
+    transform: translateY(0) !important;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
+}
+
+/* Ensure text stays bold even when processing */
+.sidebar .stButton > button > div {
+    font-weight: 700 !important;
+}
+
+/* Add a subtle glow effect to make buttons stand out more */
+.sidebar .stButton > button:focus {
+    box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.5) !important;
+}
+
+/* Make other sidebar elements match the dark blue theme */
+.sidebar .stSelectbox > div,
+.sidebar .stTextInput > div,
+.sidebar .stNumberInput > div,
+.sidebar .stDateInput > div,
+.sidebar .stTimeInput > div {
+    border-color: #3949ab !important;
+}
+
+/* Style sidebar header to match dark blue theme */
+.sidebar .block-container > div > div > div > div > div > div:first-child {
+    color: #a7b0fb !important;  /* Light blue text for headers */
+}
+
+/* Tabs styling */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 10px;
+    background-color: #0a0a0a;
+    padding: 10px 10px 0;
+    border-radius: 8px 8px 0 0;
+}
+
+.stTabs [data-baseweb="tab"] {
+    padding: 10px 20px;
+    font-weight: 700 !important;
+    background-color: #121212;
+    color: #a7a7b8;
+    border-radius: 8px 8px 0 0 !important;
+    border: none !important;
+    transition: all 0.2s ease;
+    border-bottom: 3px solid transparent !important;
+}
+
+.stTabs [data-baseweb="tab"][aria-selected="true"] {
+    background-color: #4361ee;
+    color: white;
+    border-bottom: 3px solid #4361ee !important;
+}
+
+.stTabs [data-baseweb="tab-panel"] {
+    padding: 20px;
+    background-color: #000000;
+    border: 1px solid #1a1a1a;
+    border-radius: 0 0 8px 8px;
+}
+
+/* Progress bar styling */
+.stProgress > div > div {
+    background-color: #4361ee;
+    background-image: linear-gradient(90deg, #4361ee, #48bf91);
+}
+
+/* Expander styling */
+.streamlit-expanderHeader {
+    font-weight: 600;
+    color: #e6e6e6;
+    background-color: #121212;
+    padding: 10px 15px;
+    border-radius: 6px;
+}
+
+.st-expander {
+    border: 2px solid #333 !important;
+    border-radius: 6px;
+    background-color: #0a0a0a;
+    margin-bottom: 1.2rem;
+    overflow: hidden;
+}
+
+/* Error type styling */
+.error-type {
+    font-weight: 700 !important;
+    padding: 5px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-right: 0.8rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    background-color: #002171 !important;  /* Dark blue */
+    color: white !important;
+}
+
+.error-syntax {
+    background-color: #3B0000 !important;  /* Dark red */
+    color: white !important;
+    font-weight: 700 !important;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.error-verification {
+    background-color: #004D40 !important;  /* Dark green */
+    color: white !important;
+    font-weight: 700 !important;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.error-other {
+    background-color: #3E2723 !important;  /* Dark brown */
+    color: white !important;
+    font-weight: 700 !important;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+/* Code area styling */
+.code-container {
+    border: 1px solid #1a1a1a;
+    border-radius: 6px;
+    padding: 0.8rem;
+    margin-bottom: 1.2rem;
+    background-color: #121212;
+}
+
+/* Status log styling */
+.log-entry {
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+    border-left: 3px solid #4361ee;
+    background-color: #0a0a0a;
+    border-radius: 0 4px 4px 0;
+}
+
+/* Footer styling */
+footer {
+    margin-top: 2.5rem;
+    text-align: center;
+    color: #8d99ae;
+    padding: 15px;
+    border-top: 1px solid #1a1a1a;
+}
+
+/* Checkbox styling */
+.stCheckbox > div[role="checkbox"] {
+    background-color: #121212 !important;
+    border-color: #4361ee !important;
+}
+
+/* Radio button styling */
+.stRadio > div[role="radiogroup"] > div > label > div[data-testid="stMarkdownContainer"] > p {
+    color: #e6e6e6 !important;
+}
+
+/* Streamlit form elements styling */
+input, textarea, select {
+    background-color: #121212 !important;
+    border: 1px solid #1a1a1a !important;
+    color: #e6e6e6 !important;
+    border-radius: 4px !important;
+}
+
+.stTextInput > div, 
+.stTextArea > div, 
+.stSelectbox > div, 
+.stNumberInput > div {
+    border: 1px solid #333 !important; /* Darker border by default */
+}
+
+.stTextInput > div:hover, 
+.stTextArea > div:hover, 
+.stSelectbox > div:hover, 
+.stNumberInput > div:hover {
+    border: 1px solid #4361ee !important; /* Blue border on hover */
+    box-shadow: 0 0 0 1px #4361ee55 !important; /* Subtle glow effect */
+}
+
+.stTextInput > div:focus-within, 
+.stTextArea > div:focus-within, 
+.stSelectbox > div:focus-within, 
+.stNumberInput > div:focus-within {
+    border: 2px solid #4361ee !important; /* Thicker border when focused */
+    box-shadow: 0 0 0 3px #4361ee33 !important; /* More visible glow */
+}
+
+/* Dataframe/table styling */
+.stDataFrame {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #1a1a1a;
+}
+
+.stDataFrame table {
+    background-color: #000000 !important;
+}
+
+.stDataFrame th {
+    background-color: #121212 !important;
+    color: #e6e6e6 !important;
+    font-weight: 600;
+    border: 1px solid #333 !important;
+}
+
+.stDataFrame td {
+    background-color: #0a0a0a !important;
+    color: #e6e6e6 !important;
+    border-color: #333 !important;
+}
+
+/* Text input and area styling */
+.stTextInput > div > div > input,
+.stTextArea > div > div > textarea {
+    background-color: #121212;
+    color: #e6e6e6;
+    border: 1px solid #1a1a1a;
+}
+
+/* Custom styling for plotly charts */
+.js-plotly-plot .plotly {
+    background-color: #000000 !important;
+}
+
+.js-plotly-plot .bg {
+    fill: #000000 !important;
+}
+
+/* Info/success/warning/error message boxes */
+.success, div[data-testid="stSuccessMessage"] {
+    background-color: #004D40 !important;  /* Dark green background */
+    color: white !important;
+    font-weight: 600 !important;
+    border-left: 4px solid #00C853 !important;
+}
+
+.info, div[data-testid="stInfoMessage"] {
+    background-color: #002171 !important;  /* Dark blue */
+    color: white !important;
+    font-weight: 600 !important;
+    border-left: 4px solid #2979FF !important;
+}
+
+.warning, div[data-testid="stWarningMessage"] {
+    background-color: #3E2723 !important;  /* Dark brown/amber */
+    color: white !important;
+    font-weight: 600 !important;
+    border-left: 4px solid #FFB300 !important;
+}
+
+.error, div[data-testid="stErrorMessage"] {
+    background-color: #3B0000 !important;  /* Dark red background */
+    color: white !important;
+    font-weight: 600 !important;
+    border-left: 4px solid #FF5252 !important;
+}
+
+/* Selectbox styling */
+.stSelectbox > div > div > div {
+    background-color: #121212 !important;
+    border: 1px solid #1a1a1a !important;
+    color: #e6e6e6 !important;
+}
+
+/* Tooltip styling */
+.tooltip {
+    background-color: #1a1a1a !important;
+    color: #e6e6e6 !important;
+    border: none !important;
+}
+
+/* Slider styling */
+.stSlider > div > div > div > div {
+    background-color: #4361ee !important;
+}
+
+.stSlider > div > div > div > div > div {
+    background-color: #ffffff !important;
+}
+
+/* Code editor syntax highlighting */
+.CodeMirror {
+    background-color: #0a0a0a !important;
+    color: #e6e6e6 !important;
+    border: 1px solid #1a1a1a !important;
+    border-radius: 6px !important;
+}
+
+.CodeMirror-gutters {
+    background-color: #000000 !important;
+    border-right: 1px solid #1a1a1a !important;
+}
+
+.CodeMirror-linenumber {
+    color: #8d99ae !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0a;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1a1a1a;
+    border-radius: 10px;
+    border: 2px solid #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4361ee;
+}
+
+/* Selection color */
+::selection {
+    background-color: #3B0000 !important;  /* Dark red */
+    color: white !important;
+}
+
+/* Streamlit specific adjustments - darkening default elements */
+.css-ffhzg2 {
+    background-color: #000000 !important;
+}
+
+.css-18e3th9 {
+    background-color: #000000 !important;
+}
+
+.css-1d391kg {
+    background-color: #000000 !important;
+}
+
+/* App specific - improve code viewer readability */
+.code {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Roboto Mono', monospace;
+    line-height: 1.5;
+    background-color: #0a0a0a;
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid #1a1a1a;
+}
+
+/* Improve contrast of plotly text */
+.js-plotly-plot text {
+    fill: #e6e6e6 !important;
+}
+
+/* Add cool gradient accent for special highlights */
+.highlight-container {
+    border-radius: 8px;
+    padding: 2px;
+    background: linear-gradient(135deg, #4361ee, #48bf91);
+    margin: 1rem 0;
+}
+
+.highlight-content {
+    background: #000000;
+    border-radius: 6px;
+    padding: 1rem;
+}
+
+/* Button variants with distinct colors */
+.stButton.primary > button {
+    background-image: linear-gradient(135deg, #4361ee, #3a56d4);
+}
+
+.stButton.success > button {
+    background-image: linear-gradient(135deg, #48bf91, #3ca67a);
+}
+
+.stButton.warning > button {
+    background-image: linear-gradient(135deg, #fb8c00, #e67e00);
+}
+
+.stButton.danger > button {
+    background-image: linear-gradient(135deg, #ea4335, #d32f2f);
+}
+
+/* Enhance focus states for accessibility */
+:focus {
+    outline: 3px solid #4361ee !important;
+    outline-offset: 2px !important;
+}
+
+/* Improve mobile responsiveness */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .steps-container {
+        flex-direction: column;
+        padding: 10px;
+    }
+    
+    .step {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    
+    .step-circle {
+        margin: 0 10px 0 0;
+    }
+    
+    .step-line {
+        display: none;
+    }
+}
+
+/* Improve loading animation */
+.stMarkdown div[data-testid="stSpinner"] > div {
+    border-color: #4361ee #0a0a0a #0a0a0a !important;
+}
+
+/* Emphasize section separators */
+hr {
+    height: 2px !important;
+    background-color: #333 !important;
+    border: none !important;
+    margin: 2rem 0 !important;
+}
+
+/* Enhanced text boldness and highlight visibility */
+
+/* Enhance positive highlights with dark green background and bold white text */
+.highlight-success, .success-highlight, .positive-highlight {
+    background-color: #004D40 !important;  /* Dark green */
+    color: white !important;
+    font-weight: 700 !important;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border-left: 4px solid #00C853;
+}
+
+/* Enhance negative/error highlights with dark red background and bold white text */
+.highlight-error, .error-highlight, .negative-highlight {
+    background-color: #3B0000 !important;  /* Dark red */
+    color: white !important;
+    font-weight: 700 !important;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border-left: 4px solid #FF5252;
+}
+
+/* Style info highlights with dark blue background */
+.highlight-info, .info-highlight {
+    background-color: #002171 !important;  /* Dark blue */
+    color: white !important;
+    font-weight: 700 !important;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border-left: 4px solid #2979FF;
+}
+
+/* Style warning highlights with dark amber background */
+.highlight-warning, .warning-highlight {
+    background-color: #3E2723 !important;  /* Dark brown/amber */
+    color: white !important;
+    font-weight: 700 !important;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border-left: 4px solid #FFB300;
+}
+
+/* Make success messages more visible with better contrast */
+div[data-testid="stSuccessMessage"] {
+    background-color: #004D40 !important;  /* Dark green background */
+    color: white !important;
+    font-weight: 600 !important;
+    border-left: 4px solid #00C853 !important;
+}
+
+/* Make error messages more visible with better contrast */
+div[data-testid="stErrorMessage"] {
+    background-color: #3B0000 !important;  /* Dark red background */
+    color: white !important;
+    font-weight: 600 !important;
+    border-left: 4px solid #FF5252 !important;
+}
+
+/* Make warning messages more visible */
+div[data-testid="stWarningMessage"] {
+    background-color: #3E2723 !important;  /* Dark brown/amber */
+    color: white !important;
+    font-weight: 600 !important;
+    border-left: 4px solid #FFB300 !important;
+}
+
+/* Make info messages more visible */
+div[data-testid="stInfoMessage"] {
+    background-color: #002171 !important;  /* Dark blue */
+    color: white !important;
+    font-weight: 600 !important;
+    border-left: 4px solid #2979FF !important;
+}
+
+/* Make code more readable with better contrast */
+code {
+    font-weight: 600 !important;
+    color: #E0E0E0 !important;
+    background-color: #121212 !important;
+}
+
+/* Make selected text stand out better */
+::selection {
+    background-color: #3B0000 !important;  /* Dark red */
+    color: white !important;
+}
+
+/* Improve visibility of links */
+a {
+    color: #64B5F6 !important;  /* Bright blue for links */
+    font-weight: 600 !important;
+    text-decoration: underline !important;
+}
+
+a:hover {
+    color: #90CAF9 !important;  /* Lighter blue on hover */
+    text-decoration: underline !important;
+}
+
+/* Enhanced error type styling for better visibility */
+.error-syntax {
+    background-color: #3B0000 !important;  /* Dark red */
+    color: white !important;
+    font-weight: 700 !important;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.error-type {
+    background-color: #002171 !important;  /* Dark blue */
+    color: white !important;
+    font-weight: 700 !important;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.error-verification {
+    background-color: #004D40 !important;  /* Dark green */
+    color: white !important;
+    font-weight: 700 !important;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.error-other {
+    background-color: #3E2723 !important;  /* Dark brown */
+    color: white !important;
+    font-weight: 700 !important;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+/* Make text in buttons bold */
+button, .stButton > button {
+    font-weight: 700 !important;
+}

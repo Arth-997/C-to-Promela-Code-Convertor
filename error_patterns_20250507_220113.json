@@ -1,0 +1,228 @@
+{
+  "error_patterns": [
+    {
+      "id": 1,
+      "error_type": "syntax_error",
+      "context": "if (x > 0) { y = 1; }",
+      "message": "Test case: Basic If Statement",
+      "line": null,
+      "fixes": [
+        {
+          "fix_type": "syntax_conversion",
+          "description": "Test for basic if statement conversion",
+          "original_code": "if (x > 0) { y = 1; }",
+          "fixed_code": "if\n:: x > 0 -> y = 1\nfi",
+          "success_rate": 1.0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "error_type": "syntax_error",
+      "context": "while (x < 10) { x++; }",
+      "message": "Test case: Basic While Loop",
+      "line": null,
+      "fixes": [
+        {
+          "fix_type": "syntax_conversion",
+          "description": "Test for basic while loop conversion",
+          "original_code": "while (x < 10) { x++; }",
+          "fixed_code": "do\n:: x < 10 -> x++\n:: else -> break\nod",
+          "success_rate": 1.0
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "error_type": "syntax_error",
+      "context": "for (i = 0; i < 10; i++) { sum += i; }",
+      "message": "Test case: Basic For Loop",
+      "line": null,
+      "fixes": [
+        {
+          "fix_type": "syntax_conversion",
+          "description": "Test for basic for loop conversion",
+          "original_code": "for (i = 0; i < 10; i++) { sum += i; }",
+          "fixed_code": "i = 0;\ndo\n:: i < 10 -> sum += i; i++\n:: else -> break\nod",
+          "success_rate": 1.0
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "error_type": "syntax_error",
+      "context": "int x = 1;",
+      "message": "Test case: Basic Variable Declaration",
+      "line": null,
+      "fixes": [
+        {
+          "fix_type": "syntax_conversion",
+          "description": "Test for basic variable declaration",
+          "original_code": "int x = 1;",
+          "fixed_code": "byte x = 1;",
+          "success_rate": 1.0
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "error_type": "syntax_error",
+      "context": "int array[10];",
+      "message": "Test case: Array Declaration",
+      "line": null,
+      "fixes": [
+        {
+          "fix_type": "syntax_conversion",
+          "description": "Test for array declaration",
+          "original_code": "int array[10];",
+          "fixed_code": "byte array[10];",
+          "success_rate": 1.0
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "error_type": "syntax_error",
+      "context": "int x = 1, y = 2, z = 3;",
+      "message": "Test case: Multiple Variables",
+      "line": null,
+      "fixes": [
+        {
+          "fix_type": "syntax_conversion",
+          "description": "Test for multiple variable declarations",
+          "original_code": "int x = 1, y = 2, z = 3;",
+          "fixed_code": "byte x = 1;\nbyte y = 2;\nbyte z = 3;",
+          "success_rate": 1.0
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "error_type": "syntax_error",
+      "context": "\n            if (x > 0) {\n                if (y > 0) {\n                    z = 1;\n                }\n            }\n            ",
+      "message": "Test case: Nested If Statements",
+      "line": null,
+      "fixes": [
+        {
+          "fix_type": "syntax_conversion",
+          "description": "Test for nested if statements",
+          "original_code": "\n            if (x > 0) {\n                if (y > 0) {\n                    z = 1;\n                }\n            }\n            ",
+          "fixed_code": "\n            if\n            :: x > 0 ->\n                if\n                :: y > 0 -> z = 1\n                fi\n            fi\n            ",
+          "success_rate": 1.0
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "error_type": "syntax_error",
+      "context": "\n            if (x > 0) {\n                y = 1;\n            } else if (x < 0) {\n                y = -1;\n            } else {\n                y = 0;\n            }\n            ",
+      "message": "Test case: If-Else Chain",
+      "line": null,
+      "fixes": [
+        {
+          "fix_type": "syntax_conversion",
+          "description": "Test for if-else chain",
+          "original_code": "\n            if (x > 0) {\n                y = 1;\n            } else if (x < 0) {\n                y = -1;\n            } else {\n                y = 0;\n            }\n            ",
+          "fixed_code": "\n            if\n            :: x > 0 -> y = 1\n            :: x < 0 -> y = -1\n            :: else -> y = 0\n            fi\n            ",
+          "success_rate": 1.0
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "error_type": "syntax_error",
+      "context": "\n            for (i = 0; i < 10; i++) {\n                for (j = 0; j < 10; j++) {\n                    sum += i * j;\n                }\n            }\n            ",
+      "message": "Test case: Nested Loops",
+      "line": null,
+      "fixes": [
+        {
+          "fix_type": "syntax_conversion",
+          "description": "Test for nested loops",
+          "original_code": "\n            for (i = 0; i < 10; i++) {\n                for (j = 0; j < 10; j++) {\n                    sum += i * j;\n                }\n            }\n            ",
+          "fixed_code": "\n            i = 0;\n            do\n            :: i < 10 ->\n                j = 0;\n                do\n                :: j < 10 -> sum += i * j; j++\n                :: else -> break\n                od;\n                i++\n            :: else -> break\n            od\n            ",
+          "success_rate": 1.0
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "error_type": "syntax_error",
+      "context": "\n            while (1) {\n                if (x > 10) break;\n                x++;\n            }\n            ",
+      "message": "Test case: Loop with Break",
+      "line": null,
+      "fixes": [
+        {
+          "fix_type": "syntax_conversion",
+          "description": "Test for loop with break statement",
+          "original_code": "\n            while (1) {\n                if (x > 10) break;\n                x++;\n            }\n            ",
+          "fixed_code": "\n            do\n            :: x <= 10 -> x++\n            :: x > 10 -> break\n            od\n            ",
+          "success_rate": 1.0
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "error_type": "syntax_error",
+      "context": "\n            void process() {\n                byte x = 0;\n                while (x < 10) {\n                    x++;\n                }\n            }\n            ",
+      "message": "Test case: Basic Process",
+      "line": null,
+      "fixes": [
+        {
+          "fix_type": "syntax_conversion",
+          "description": "Test for basic process definition",
+          "original_code": "\n            void process() {\n                byte x = 0;\n                while (x < 10) {\n                    x++;\n                }\n            }\n            ",
+          "fixed_code": "\n            proctype process() {\n                byte x = 0;\n                do\n                :: x < 10 -> x++\n                :: else -> break\n                od\n            }\n            ",
+          "success_rate": 1.0
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "error_type": "syntax_error",
+      "context": "\n            chan c = [1] of {byte};\n            c!1;\n            c?x;\n            ",
+      "message": "Test case: Channel Operations",
+      "line": null,
+      "fixes": [
+        {
+          "fix_type": "syntax_conversion",
+          "description": "Test for channel operations",
+          "original_code": "\n            chan c = [1] of {byte};\n            c!1;\n            c?x;\n            ",
+          "fixed_code": "\n            chan c = [1] of {byte};\n            c!1;\n            c?x;\n            ",
+          "success_rate": 1.0
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "error_type": "syntax_error",
+      "context": "\n            atomic {\n                x = 1;\n                y = 2;\n            }\n            ",
+      "message": "Test case: Basic Atomic",
+      "line": null,
+      "fixes": [
+        {
+          "fix_type": "syntax_conversion",
+          "description": "Test for basic atomic operation",
+          "original_code": "\n            atomic {\n                x = 1;\n                y = 2;\n            }\n            ",
+          "fixed_code": "\n            atomic {\n                x = 1;\n                y = 2\n            }\n            ",
+          "success_rate": 1.0
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "error_type": "syntax_error",
+      "context": "\n            atomic {\n                x = 1;\n                atomic {\n                    y = 2;\n                    z = 3;\n                }\n            }\n            ",
+      "message": "Test case: Nested Atomic",
+      "line": null,
+      "fixes": [
+        {
+          "fix_type": "syntax_conversion",
+          "description": "Test for nested atomic operations",
+          "original_code": "\n            atomic {\n                x = 1;\n                atomic {\n                    y = 2;\n                    z = 3;\n                }\n            }\n            ",
+          "fixed_code": "\n            atomic {\n                x = 1;\n                atomic {\n                    y = 2;\n                    z = 3\n                }\n            }\n            ",
+          "success_rate": 1.0
+        }
+      ]
+    }
+  ]
+}
